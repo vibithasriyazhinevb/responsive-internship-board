@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Internship Board</title>
+
+    <meta
+        name="description"
+        content="Find internships across different domains with our responsive internship board."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar" aria-label="Main Navigation">
+
+            <a href="#home" class="logo">
+                Internship Board
+            </a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#internships">Internships</a>
+                </li>
+
+                <li>
+                    <a href="#about">About</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <p class="tag">CAREER OPPORTUNITIES</p>
+
+                <h1>
+                    Find Your
+                    <span>Dream Internship</span>
+                </h1>
+
+                <p>
+                    Explore internship opportunities and find
+                    the right path to grow your career.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="search-section" aria-labelledby="search-title">
+
+            <div class="section-heading">
+
+                <p class="tag">EXPLORE</p>
+
+                <h2 id="search-title">
+                    Find Internships
+                </h2>
+
+            </div>
+
+
+            <form id="searchForm" class="search-form">
+
+                <div class="form-group">
+
+                    <label for="search">
+                        Search internships
+                    </label>
+
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="Search by title or company..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="domain">
+                        Filter by domain
+                    </label>
+
+                    <select id="domain" name="domain">
+
+                        <option value="all">
+                            All Domains
+                        </option>
+
+                        <option value="Web Development">
+                            Web Development
+                        </option>
+
+                        <option value="UI/UX">
+                            UI/UX Design
+                        </option>
+
+                        <option value="Artificial Intelligence">
+                            Artificial Intelligence
+                        </option>
+
+                        <option value="Data Science">
+                            Data Science
+                        </option>
+
+                        <option value="Cyber Security">
+                            Cyber Security
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <section
+            id="internships"
+            class="internship-section"
+            aria-labelledby="internship-title"
+        >
+
+            <div class="section-heading">
+
+                <p class="tag">OPPORTUNITIES</p>
+
+                <h2 id="internship-title">
+                    Available Internships
+                </h2>
+
+            </div>
+
+
+            <div
+                id="internshipList"
+                class="internship-grid"
+                aria-live="polite"
+            ></div>
+
+
+            <div
+                id="emptyState"
+                class="state-message"
+                hidden
+            >
+
+                <div class="state-icon">🔍</div>
+
+                <h3>
+                    No internships found
+                </h3>
+
+                <p>
+                    Try changing your search or filter.
+                </p>
+
+            </div>
+
+
+            <div
+                id="errorState"
+                class="state-message error"
+                hidden
+            >
+
+                <div class="state-icon">⚠️</div>
+
+                <h3>
+                    Something went wrong
+                </h3>
+
+                <p>
+                    We couldn't load the internships.
+                    Please try again.
+                </p>
+
+                <button
+                    type="button"
+                    id="retryButton"
+                >
+                    Try Again
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section id="about" class="about-section">
+
+            <div class="about-content">
+
+                <p class="tag">ABOUT</p>
+
+                <h2>
+                    Build Your Future
+                </h2>
+
+                <p>
+                    Responsive Internship Board helps students
+                    discover internship opportunities across
+                    different domains and career paths.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Responsive Internship Board.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
