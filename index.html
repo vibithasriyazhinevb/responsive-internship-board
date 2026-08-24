@@ -1,248 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Responsive Internship Board</title>
-
-    <meta
-        name="description"
-        content="Find internships across different domains with our responsive internship board."
-    >
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Responsive internship board for discovering internship opportunities."
+  />
+  <title>Internship Board</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-
-            <a href="#home" class="logo">
-                Internship Board
-            </a>
-
-            <ul class="nav-links">
-                <li>
-                    <a href="#home">Home</a>
-                </li>
-
-                <li>
-                    <a href="#internships">Internships</a>
-                </li>
-
-                <li>
-                    <a href="#about">About</a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
-
-
-    <main>
-
-        <section id="home" class="hero">
-
-            <div class="hero-content">
-
-                <p class="tag">CAREER OPPORTUNITIES</p>
-
-                <h1>
-                    Find Your
-                    <span>Dream Internship</span>
-                </h1>
-
-                <p>
-                    Explore internship opportunities and find
-                    the right path to grow your career.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <section class="search-section" aria-labelledby="search-title">
-
-            <div class="section-heading">
-
-                <p class="tag">EXPLORE</p>
-
-                <h2 id="search-title">
-                    Find Internships
-                </h2>
-
-            </div>
-
-
-            <form id="searchForm" class="search-form">
-
-                <div class="form-group">
-
-                    <label for="search">
-                        Search internships
-                    </label>
-
-                    <input
-                        type="search"
-                        id="search"
-                        name="search"
-                        placeholder="Search by title or company..."
-                        autocomplete="off"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="domain">
-                        Filter by domain
-                    </label>
-
-                    <select id="domain" name="domain">
-
-                        <option value="all">
-                            All Domains
-                        </option>
-
-                        <option value="Web Development">
-                            Web Development
-                        </option>
-
-                        <option value="UI/UX">
-                            UI/UX Design
-                        </option>
-
-                        <option value="Artificial Intelligence">
-                            Artificial Intelligence
-                        </option>
-
-                        <option value="Data Science">
-                            Data Science
-                        </option>
-
-                        <option value="Cyber Security">
-                            Cyber Security
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </form>
-
-        </section>
-
-
-        <section
-            id="internships"
-            class="internship-section"
-            aria-labelledby="internship-title"
-        >
-
-            <div class="section-heading">
-
-                <p class="tag">OPPORTUNITIES</p>
-
-                <h2 id="internship-title">
-                    Available Internships
-                </h2>
-
-            </div>
-
-
-            <div
-                id="internshipList"
-                class="internship-grid"
-                aria-live="polite"
-            ></div>
-
-
-            <div
-                id="emptyState"
-                class="state-message"
-                hidden
-            >
-
-                <div class="state-icon">🔍</div>
-
-                <h3>
-                    No internships found
-                </h3>
-
-                <p>
-                    Try changing your search or filter.
-                </p>
-
-            </div>
-
-
-            <div
-                id="errorState"
-                class="state-message error"
-                hidden
-            >
-
-                <div class="state-icon">⚠️</div>
-
-                <h3>
-                    Something went wrong
-                </h3>
-
-                <p>
-                    We couldn't load the internships.
-                    Please try again.
-                </p>
-
-                <button
-                    type="button"
-                    id="retryButton"
-                >
-                    Try Again
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <section id="about" class="about-section">
-
-            <div class="about-content">
-
-                <p class="tag">ABOUT</p>
-
-                <h2>
-                    Build Your Future
-                </h2>
-
-                <p>
-                    Responsive Internship Board helps students
-                    discover internship opportunities across
-                    different domains and career paths.
-                </p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-
-        <p>
-            © 2026 Responsive Internship Board.
-            All rights reserved.
+  <header class="site-header">
+    <div class="container header-content">
+      <a href="#" class="logo" aria-label="Internship Board home">
+        <span class="logo-mark">IB</span>
+        <span>Internship Board</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#internships">Internships</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">CAREER OPPORTUNITIES</p>
+
+        <h1>Find your next internship</h1>
+
+        <p class="hero-text">
+          Explore internships across technology, design, data and business.
+          Search and filter opportunities that match your goals.
         </p>
+      </div>
+    </section>
 
-    </footer>
+    <section class="search-section" aria-labelledby="search-title">
+      <div class="container">
+        <h2 id="search-title" class="visually-hidden">
+          Search and filter internships
+        </h2>
 
+        <form id="filterForm" class="filters" role="search">
+          <div class="form-group search-group">
+            <label for="searchInput">Search internships</label>
 
-    <script src="script.js"></script>
+            <div class="input-wrapper">
+              <span aria-hidden="true">⌕</span>
 
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search by title, company or skill..."
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="domainFilter">Domain</label>
+
+            <select id="domainFilter">
+              <option value="all">All domains</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="modeFilter">Work mode</label>
+
+            <select id="modeFilter">
+              <option value="all">All work modes</option>
+              <option value="Remote">Remote</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="On-site">On-site</option>
+            </select>
+          </div>
+
+          <button type="button" id="clearFilters" class="secondary-button">
+            Clear filters
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section
+      id="internships"
+      class="internships-section"
+      aria-labelledby="resultsTitle"
+    >
+      <div class="container">
+
+        <div class="results-header">
+          <div>
+            <h2 id="resultsTitle">Available internships</h2>
+
+            <p id="resultsCount" aria-live="polite">
+              Loading internships...
+            </p>
+          </div>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loadingState" class="state-box">
+          <div class="loader" aria-hidden="true"></div>
+          <p>Loading internships...</p>
+        </div>
+
+        <!-- Error state -->
+        <div id="errorState" class="state-box error-state" hidden>
+          <div class="state-icon" aria-hidden="true">!</div>
+
+          <h3>Something went wrong</h3>
+
+          <p>
+            We couldn't load the internship listings.
+            Please try again.
+          </p>
+
+          <button id="retryButton" class="primary-button">
+            Try again
+          </button>
+        </div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="state-box" hidden>
+          <div class="state-icon" aria-hidden="true">⌕</div>
+
+          <h3>No internships found</h3>
+
+          <p>
+            Try changing your search or filter options.
+          </p>
+
+          <button id="emptyClearButton" class="primary-button">
+            Clear filters
+          </button>
+        </div>
+
+        <!-- Internship cards -->
+        <div
+          id="internshipGrid"
+          class="internship-grid"
+          aria-live="polite"
+        ></div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-card">
+          <p class="eyebrow">ACCESSIBLE BY DESIGN</p>
+
+          <h2>Built for every screen and every user.</h2>
+
+          <p>
+            This internship board uses semantic HTML, keyboard-friendly
+            controls, accessible labels, visible focus states and responsive
+            layouts for mobile, tablet and desktop.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Details Modal -->
+  <div
+    id="detailsModal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    hidden
+  >
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <div class="modal-content">
+      <button
+        id="closeModal"
+        class="close-button"
+        aria-label="Close internship details"
+      >
+        ×
+      </button>
+
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Internship Board. Built with HTML, CSS and JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
