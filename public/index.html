@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Internship Board - Browse and apply for internship opportunities">
+    <meta name="theme-color" content="#667eea">
+    <title>Internship Board - Find Your Opportunity</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Internship Board</h1>
+            <p>Explore and apply for internship opportunities</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs" role="tablist">
+            <button class="nav-btn active" data-tab="listings" role="tab" aria-selected="true" aria-controls="listings">Browse Listings</button>
+            <button class="nav-btn" data-tab="form" role="tab" aria-selected="false" aria-controls="form">Post Internship</button>
+        </nav>
+
+        <!-- Listings Tab -->
+        <section id="listings" class="tab-content active" role="tabpanel">
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Search by title, company..." class="search-box" aria-label="Search internships">
+                <select id="statusFilter" class="filter-select" aria-label="Filter by status">
+                    <option value="">All Statuses</option>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state" role="status" aria-live="polite">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Loading internships...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state hidden" role="alert">
+                <p id="errorMessage"></p>
+                <button onclick="loadInternships()" class="retry-btn">Retry</button>
+            </div>
+
+            <!-- Listings Container -->
+            <div id="listingsContainer" class="listings-container hidden"></div>
+
+            <!-- Pagination -->
+            <div id="paginationContainer" class="pagination hidden" role="navigation" aria-label="Listings pagination"></div>
+        </section>
+
+        <!-- Form Tab -->
+        <section id="form" class="tab-content" role="tabpanel">
+            <div class="form-container">
+                <h2>Post a New Internship</h2>
+                <form id="internshipForm" class="internship-form" novalidate>
+                    <div class="form-group">
+                        <label for="title">Job Title <span aria-label="required">*</span></label>
+                        <input type="text" id="title" name="title" required placeholder="e.g., Frontend Developer Intern" maxlength="100">
+                        <span class="error-message" id="titleError" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company Name <span aria-label="required">*</span></label>
+                        <input type="text" id="company" name="company" required placeholder="e.g., TechCorp" maxlength="50">
+                        <span class="error-message" id="companyError" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., San Francisco, CA" maxlength="100">
+                        <span class="error-message" id="locationError" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Job Description <span aria-label="required">*</span></label>
+                        <textarea id="description" name="description" required placeholder="Describe the role and responsibilities..." rows="5" maxlength="1000"></textarea>
+                        <span class="error-message" id="descriptionError" role="alert"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="stipend">Monthly Stipend ($)</label>
+                            <input type="number" id="stipend" name="stipend" min="0" max="1000000" placeholder="e.g., 5000">
+                            <span class="error-message" id="stipendError" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duration">Duration</label>
+                            <input type="text" id="duration" name="duration" placeholder="e.g., 3 months" maxlength="50">
+                            <span class="error-message" id="durationError" role="alert"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+
+                    <div id="formMessage" class="form-message hidden" role="alert"></div>
+
+                    <button type="submit" class="submit-btn">Post Internship</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal for Application Form -->
+    <div id="applicationModal" class="modal hidden" role="dialog" aria-labelledby="applicationModalTitle">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeApplicationModal()" aria-label="Close application form">&times;</button>
+            <h2 id="applicationModalTitle">Apply for Internship</h2>
+            <p id="internshipTitle"></p>
+            <form id="applicationForm" class="application-form" novalidate>
+                <input type="hidden" id="internshipId" name="internshipId">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name <span aria-label="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required maxlength="50">
+                    <span class="error-message" id="fullNameError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span aria-label="required">*</span></label>
+                    <input type="email" id="email" name="email" required maxlength="100">
+                    <span class="error-message" id="emailError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number <span aria-label="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]+" maxlength="20">
+                    <span class="error-message" id="phoneError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter <span aria-label="required">*</span></label>
+                    <textarea id="coverLetter" name="coverLetter" required rows="4" placeholder="Tell us why you're interested in this role..." maxlength="1000"></textarea>
+                    <span class="error-message" id="coverLetterError" role="alert"></span>
+                </div>
+
+                <div id="applicationMessage" class="form-message hidden" role="alert"></div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
